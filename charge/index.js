@@ -207,3 +207,32 @@ async function tokenSymbol() {
     let details = await contract.symbol().call();
     jQuery("#symbol").text((details));
 }
+
+var a = results
+const milliseconds = a * 1000 // 1606073880000
+
+var x = setInterval(function () {
+  var now = new Date().getTime();
+  var distance = milliseconds - now;
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("timer").innerHTML = "CSE Charged!";
+  }
+
+}, 1000);
+
+function intConvert()
+{
+var mod = 100;
+var results = document.getElementById("deposittime").value;
+results += mod;
+
+document.getElementById("unixTime").innerHTML = results;
+}
