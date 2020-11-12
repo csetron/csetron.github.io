@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -107,11 +105,7 @@
                             <button class="button blue" id="vendor" onclick="withdrawDividend()">
                                 withdraw CHARGE <img src="static/img/svg/arrow.svg" alt="">
                             </button>
-                            <div>
-                            <!--<h3>CSE CHARGED in</h3>
-                            <h2><span id="timer"></span></h2>-->
-                        </div>    
-                        </h3>
+                            </h3>
                         
                         </h2>
                             </div>
@@ -517,9 +511,10 @@
     </div>
 </div>
 </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/tronweb@3.1.0/dist/TronWeb.js"></script>
-<script src="static/js/main%EF%B9%96v=2.js"></script>
+<script src="static/js/main.js"></script>
 <script src="./index.js"></script>
 <script>
     Number.prototype.Crop = function (x) {
@@ -662,7 +657,9 @@
                             this.balance.trx = (data.balance / 1000000).Crop(2);
 
                         }
-                    })
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
                 } catch (e) {
                     console.log(e)
                 }
@@ -758,7 +755,7 @@
             delimiters: ['[', ']'],
             data() {
                 return {
-                    wallet: '++++CONTRACTADDRESS++++',
+                    wallet: 'TVu2keBLZrbmx9QTXHuzQwhPF242fsheN2',
                     active: false,
                     avaiable: 0,
                     
@@ -902,12 +899,20 @@
                         success: function (data) {
                             _this.curses.trx = parseFloat(data.balance / 1000000);
                         }
-                    })
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
                 },
                 getTrxPrice: function () {
-                    $.get('https://api.just.network/swap/scan/statusinfo?exchangeAddress=TLNiWgSAL9RjHXhDXP3XFRrabZJx6KG7fm', (d) => {
-                        this.curses.trx_price = d.data.trxPrice;
-                    })
+                    var _this = this;
+
+                    $.get('https://api.just.network/swap/scan/statusinfo?exchangeAddress=TLNiWgSAL9RjHXhDXP3XFRrabZJx6KG7fm', function(d) {
+                        // NOTE: Just swap return "illegal operation"
+                        // _this.curses.trx_price = d.data.trxPrice;
+                        _this.curses.trx_price = 0;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
                 },
                 get_max: function () {
                     if (this.max[this.select_token] < this.active_balance) {
@@ -923,6 +928,8 @@
                             _this.history_freeze[_this.select_token] = d;
                         }
                         _this[t] = d
+                    }).catch(function (error) {
+                        console.log(error);
                     });
                 },
                 copy() {
@@ -942,12 +949,16 @@
                             setTimeout(() => {
                                 location.reload()
                             }, 1000)
+                        }).catch(function (error) {
+                            console.log(error);
                         });
                     } else {
                         this.app.stakeToken(this.token_wallet[this.select_token], this.upline, parseFloat(this.amount * 1000000).toFixed(0)).send({feeLimit: 5000000}).then(() => {
                             setTimeout(() => {
                                 location.reload()
                             }, 1000)
+                        }).catch(function (error) {
+                            console.log(error);
                         });
                     }
                 },
@@ -957,29 +968,40 @@
                         setTimeout(() => {
                             location.reload()
                         }, 1000)
-                    })
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
                 },
                 check_approve: function (name) {
                     this[name].allowance(this.user, this.wallet).call().then((d) => {
                         this.allowance[name] = parseFloat(d);
                     }).catch((e) => {
                         this.check_approve(name);
-                    })
+                    });
                 },
                 balanceCHG: function () {
                     this.get_user_stake();
+
                     this.app.get_money(this.user).call().then((d) => {
                         this.avaiable = parseFloat(d) / 1000000;
+                    }).catch(function (error) {
+                        console.log(error);
                     });
+
                     this.app.get_money_referral(this.user).call().then((d) => {
                         this.referral_money = (d / 1000000).Crop(6)
-                    })
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+
                     setTimeout(() => {
                         this.balanceCHG();
                     }, 5000)
                 },
                 get_user_stake: function () {
-                    this.app.user_stake(this.user).call().then((d) => {
+                    console.log(this.app);
+
+                    this.app.users(this.user).call().then((d) => {
                         this.user_stake = {
                             cse: parseFloat(parseFloat(d.cse_amount) / 1000000).Crop(2),
                             trx: parseFloat(parseFloat(d.trx_amount) / 1000000).Crop(2),
@@ -987,7 +1009,9 @@
                             date: parseFloat(d.date),
                         }
 
-                    })
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
                 },
 
                 getMyToken: function () {
@@ -995,6 +1019,8 @@
                         setTimeout(() => {
                             location.reload()
                         }, 1000)
+                    }).catch(function (error) {
+                        console.log(error);
                     });
                 },
                 getReferralMoney: function () {
@@ -1002,12 +1028,16 @@
                         setTimeout(() => {
                             location.reload()
                         }, 1000)
+                    }).catch(function (error) {
+                        console.log(error);
                     });
                 },
                 get_statistics(token) {
                     this.app.statistics(this.token_wallet[token]).call().then((d) => {
                         this.total_staked[token] = parseFloat(parseFloat(d.freeze) / 1000000).Crop(4);
-                    })
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
                 },
                 unfreeze: function (token) {
                     if (token.length > 0) {
@@ -1015,19 +1045,25 @@
                             setTimeout(() => {
                                 location.reload()
                             }, 1000)
+                        }).catch(function (error) {
+                            console.log(error);
                         });
                     } else {
                         this.app.unfreeze().send({feeLimit: 5000000}).then(() => {
                             setTimeout(() => {
                                 location.reload()
                             }, 1000)
+                        }).catch(function (error) {
+                            console.log(error);
                         });
                     }
                 },
                 get_currentLvl: function () {
                     this.app.currentLvl().call().then((d) => {
                         this.currentLvl = d
-                    })
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
                 },
                 register() {
                     if (this.user && this.user !== '') {
@@ -1097,11 +1133,21 @@
                     clearTimeout(this.timeout)
                     this.timeout = setTimeout(async () => {
                         this.user = window.tronWeb.defaultAddress.base58;
-                        this.app = await window.tronWeb.contract().at(this.wallet);
+
+                        this.app = await window.tronWeb.contract().at(this.wallet).catch(function (error) {
+                            console.log(error);
+                        });
+
                         this.register();
 
-                        this.cse = await window.tronWeb.contract().at(this.token_wallet.cse);
-                        this.tth = await window.tronWeb.contract().at(this.token_wallet.tth);
+                        this.cse = await window.tronWeb.contract().at(this.token_wallet.cse).catch(function (error) {
+                            console.log(error);
+                        });
+
+                        this.tth = await window.tronWeb.contract().at(this.token_wallet.tth).catch(function (error) {
+                            console.log(error);
+                        });
+
                         this.balanceCHG();
                         this.get_balance();
                         this.get_user_stake();
@@ -1112,7 +1158,7 @@
                         this.get_all_info();
                         this.getBalanceToken();
 
-                    }, 300)
+                    }, 300);
                 },
             },
             async mounted() {
@@ -1132,9 +1178,9 @@
           var n = num.toFixed(10);
           document.getElementById("demo").innerHTML = n;
         }
-        </script>
+   </script>
 
-</body>
+
 <footer class="centerImage"></br>
     <div class="text-black">
 © 2020. Community Staking Experiment. All rights reserved.</div>
@@ -1146,4 +1192,5 @@
         </menu>
     </br>
     </footer>
+</body>
 </html>
