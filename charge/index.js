@@ -138,7 +138,7 @@ async function getUserDetails() {
     deposit_amount: parseInt(details.deposit_amount) / 100000000,
     deposit_payouts: parseInt(details.deposit_payouts) / 100000000,
     deposit_time: parseInt(details.deposit_time),
-    total_deposits: parseInt(details.total_deposits), / 100000000,
+    total_deposits: parseInt(details.total_deposits),
     total_payouts: parseInt(details.total_payouts) / 100000000,
   };
 
