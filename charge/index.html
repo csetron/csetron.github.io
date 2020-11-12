@@ -1,0 +1,1134 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CHARGE</title>
+    <link rel="stylesheet" href="static/css/style%EF%B9%96v=65.css">
+    <link rel="stylesheet" href="static/css/libs%EF%B9%96v=65.css">
+    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+</head>
+<style>[v-cloak]{
+        display: none;
+    }
+</style>
+<body>
+<div class="app" v-cloak="">
+    <main class="main">
+        <header class="header">
+            <div class="container">
+                <a href="https://csetron.com" class="logo">
+                    <img src="static/img/png/CSE.png" alt="">
+                </a>
+                <menu class="menu m-none">
+                    <div>
+                        <a href="https://csetron.github.io/auction" target="_blank">CSE Auction</a>
+                        <a href="https://justswap.org/?lang=en-US#/home?tokenAddress=TVu2keBLZrbmx9QTXHuzQwhPF242fsheN2&amp;type=swap" target="_blank">swap CHARGE</a>
+                        <a href="https://tronscan.org/#/contract/TVu2keBLZrbmx9QTXHuzQwhPF242fsheN2" target="_blank">Contract</a>    
+                    </div>
+
+
+
+                    <button class="button blue" :data-toggle="user ? '' : 'login'"><img
+                            src="static/img/svg/main/user.svg" alt=""
+                            style="margin-left: 0; margin-right: 15px;">[user ? user_login : 'unlock wallet']
+                    </button>
+                </menu>
+                <button class="burger d-none" data-toggle="menu">
+                    <img src="static/img/svg/burger.svg" alt="">
+                </button>
+            </div>
+        </header>
+
+        
+    <div class="global_section defi">
+
+        <div class="container container__header">
+    
+            <div class="curses_d m-none"
+                 style="position: absolute; top : 23px; right: 15px;font-weight: 500;font-size: 14px;color: #ffffff;">
+                <span style="margin-right: 57px">1 CHG ~ [price_token_trx] TRX</span>
+                <span>1 CHG ~ [price_token] USDT</span>
+            </div>
+                        
+            <h2>CHARGE</h2>
+            <h3>Stake CSE. Earn CHARGE.</h3>
+            <h4 class="d-none">1 CHG =[price_token_trx] trx</h4>
+
+
+             
+            </div>
+
+        </div>
+        <div class="mining">
+            <div class="container">
+                <div class="mining-block">
+                    <div class="mining__list">
+
+                    <div class="panel__right">
+                        <div class="panel__content">
+                            <h3>CSE balance</h3></br>
+                            <h2><span id="balanceOfCSE"></span><span> CSE</span></h2>
+                            <p></br>
+                            <img src="static/img/png/CSELogo.png" alt="" class="center" style="width: 55vw; max-width: 170px;" /> </p>
+                            </div>
+                            <div class="container" class="inline">
+                                <input type="number"
+                                class="number" placeholder="Enter Stake Amount" id="depositamount">  
+                            <button class="button blue" onclick="deposit()">
+                                <img src="static/img/svg/arrow.svg" alt="">
+                            </button> 
+                            <h3><a href="#" data-toggle="withdraw" class="text-blue" onclick="getUserDetails()"></br><span>Statistics</span></a>
+                        </div>
+                    </br>
+                </br>
+            </br>
+
+                        <div>
+                        </div>
+                      <!--  <p>
+                        <button class="button blue" @click.prevent="unfreeze('cse')">
+                            Unstake CSE <img src="static/img/svg/arrow.svg" alt="">
+                        </button></p>
+                        -->
+                        </div>
+                    </div>
+                    <div class="panel__right">
+                        <div class="panel__content">
+                            <h3>CHARGE token balance</h3></br>
+                            <h2><span id="dividend"></span><span> CHG</span>
+                            </h2></br>
+                            <img src="static/img/png/1.gif" alt="" class="center__right">
+                            <h2></br>
+                            <button class="button blue" id="vendor" onclick="withdrawDividend()">
+                                withdraw CHARGE <img src="static/img/svg/arrow.svg" alt="">
+                            </button>
+                            </h3>
+                        
+                        </h2>
+                            </div>
+                            
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="container">
+
+            <div class="ref">
+                <div class="panel__right">
+                    <div class="panel__right-content">
+                            
+                       <h4>available reward</h4>
+                        <h3>[referral_money] <span>CHG</span></h3>
+                        <button class="button blue d-none"
+                                @click.prevent="getReferralMoney">withdraw to wallet
+                            <img src="static/img/svg/arrow.svg" alt="">
+                        </button>
+                        <button class="button blue m-none"
+                                @click.prevent="getReferralMoney">withdraw to wallet
+                            <img src="static/img/svg/arrow.svg" alt="">
+                        </button>
+                    </div>
+                    <div class="ref__right-footer">
+
+                        <h4>total referrals: <b>[total_referral]</b></h4>
+                        <button class="button blue" @click.prevent="copy"> copy ref link<img
+                            src="static/img/svg/arrow.svg" alt=""></button>
+                            <input type="text" id="ref"
+                            :value="ref_link"
+                            readonly>
+                        <a href="#" data-toggle="referral">referral statistics</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            -->
+    </div>
+
+    </main>
+
+
+    
+
+<div class="modal" data-modal="withdraw">
+    <div class="modal__container" style="max-width: 500px">
+        <button class="close"><img src="static/img/svg/main/close.svg" alt=""></button>
+        <div class="modal-content">
+            <div class="container">
+                <table>
+                    <h2>Total Supply:</h2>
+                    <h2><span id="totalSupply"></span></h2></b>
+                    <h2>CSE Deposited:</h2>
+                    <h2><span id="totaldeposits"></span></h2>
+                    <h2>Charge Withdrawn:</h2>
+                    <h2><span id="userpayouts"></span></h2>
+                    <h2>Total Payouts:</h2>
+                    <h2><span id="deposittime"></span></h2></b>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" data-modal="login">
+    <div class="modal__container" style="max-width: 500px">
+        <button class="close"><img src="static/img/svg/main/close.svg" alt=""></button>
+        <div class="modal-content">
+            <div class="container modal-login">
+                <h2>AUTHORIZATION</h2>
+                <p>Please sign in to your TRON wallet. If you haven’t downloaded the Install TronLink browser extension
+                    or the TronWallet application for your smartphone by clicking on the button below if you didn't this
+                    yet.</p>
+                <p><b>Make sure you are on the mainnet network. Do not use a test network.</b></p>
+                <div>
+                    <a href="https://www.tronlink.org/" target="_blank" class="button green">tron link</a>
+                    <a href="https://www.tronwallet.me/" target="_blank" class="button blue">tron wallet</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" data-modal="referral">
+    <div class="modal__container" style="max-width: 500px">
+        <button class="close"><img src="static/img/svg/main/close.svg" alt=""></button>
+        <div class="modal-content">
+            <div class="container">
+                <h2>TOKEN WITHDRAWAL STATISTICS</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>token withdrawal amount</td>
+                        <td>date/time</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="w in referral">
+                        <td><b class="text-dark-blue">[parseFloat(w.amount/1000000).Crop(6)]</b> CHG</td>
+                        <td>[w.date]</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" data-modal="lang">
+    <div class="modal__container modal-lang">
+        <button class="close">
+            <img src="static/img/svg/main/close.svg" alt=""></button>
+        <div class="container">
+            <ul>
+                
+                    <li><a href="index.html"><img src="static/img/flags/en.png"
+                                                                             alt=""></a><span>English</span></li>
+                
+                    <li><a href="zh-hans/index.html"><img src="static/img/flags/zh-hans.png"
+                                                                             alt=""></a><span>中文</span></li>
+                
+                    <li><a href="ru/index.html"><img src="static/img/flags/ru.png"
+                                                                             alt=""></a><span>Русский</span></li>
+                
+                    <li><a href="fa/index.html"><img src="static/img/flags/fa.png"
+                                                                             alt=""></a><span>farsi</span></li>
+                
+                    <li><a href="es/index.html"><img src="static/img/flags/es.png"
+                                                                             alt=""></a><span>espanol</span></li>
+                
+                    <li><a href="vi/index.html"><img src="static/img/flags/vi.png"
+                                                                             alt=""></a><span>tiếng Việt</span></li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal" data-modal="soc">
+    <div class="modal__container modal-soc">
+        <button class="close">
+            <img src="static/img/svg/main/close.svg" alt=""></button>
+        <div class="container">
+            <h2>contact us</h2>
+            <ul>
+                <li onclick="window.open('https://t.me/csetron')">
+                    <i><img src="static/img/flags/en.png" alt=""></i>
+                    <div>
+                        <h3>english</h3>
+                        <h5>telegram group</h5>
+                    </div>
+                </li>
+                <li onclick="window.open('https://t.me/csetron')">
+                    <i><img src="static/img/flags/fa.png" alt=""></i>
+                    <div>
+                        <h3>iranian</h3>
+                        <h5>telegram group</h5>
+                    </div>
+                </li>
+                <li onclick="window.open('https://t.me/csetron')">
+                    <i><img src="static/img/flags/zh-hans.png" alt=""></i>
+                    <div>
+                        <h3>chinese</h3>
+                        <h5>telegram group</h5>
+                    </div>
+                </li>
+                <li onclick="window.open('https://t.me/csetron')">
+                    <i><img src="static/img/flags/es.png" alt=""></i>
+                    <div>
+                        <h3>spanish</h3>
+                        <h5>telegram group</h5>
+                    </div>
+                </li>
+                <li onclick="window.open('https://t.me/csetron')">
+                    <i><img src="static/img/flags/ph.png" alt=""></i>
+                    <div>
+                        <h3>Philippines</h3>
+                        <h5>telegram group</h5>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal" data-modal="menu">
+    <div class="modal__container modal-menu">
+        <button class="close"><img src="static/img/svg/main/close.svg" alt="" onclick="getUserDetails()"></button>
+        <div class="container">
+            <div class="modal-content">
+                <menu class="menu d-none">
+                    <div><h2>
+
+                    </div></h2>
+                </menu>
+            </div>
+            <menu>
+                <li><a href="https://justswap.org/?lang=en-US#/home?tokenAddress=TVs1rRWrBkgQ5zxksYJuCeGthFohjKUGyy&amp;type=swap" target="_blank">trade CHARGE</a></li>
+                <li><a href="https://csetron.github.io/auction" target="_blank">CSE Auction</a></li>
+                <li><a href="https://tronscan.org/#/contract/TVu2keBLZrbmx9QTXHuzQwhPF242fsheN2" target="_blank">Contract</a></li>
+            </menu>
+            <ul class="soc">
+                <li onclick="window.open('https://twitter.com/CseTron')"><a href="https://twitter.com/CseTron"
+                                                                               target="_blank">
+                    <img src="static/img/svg/main/tw.svg" alt="">
+                </a>
+                </li>
+                <li >
+                    <a href="https://t.me/csetron" data-toggle="soc" target="_blank">
+                        <img src="static/img/svg/main/tl.svg" alt="">
+                    </a>
+                </li>
+            </ul>
+            <a href="" class="copyright">Copyright © All rights reserved</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal" data-modal="statistics">
+    <div class="modal__container" style="max-width: 750px">
+        <button class="close"><img src="static/img/svg/main/close.svg" alt=""></button>
+        <div class="modal-content">
+            <div class="container">
+                <h2>Financial Statistics</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>STAKE AMOUNT</td>
+                        <td class="m-none">Performed action</td>
+                        <td>date/time</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="w in statistics">
+                        <td>
+                            <b>[parseFloat(w.amount/1000000).Crop(6)]</b> trx
+                            <span class="d-none"
+                                  :class="{'text-green' : w.type ==='freeze' , 'text-blue' : w.type !== 'freeze'}">[w.type =='freeze' ? 'Posting of a stake' : 'Return of a deposit']</span>
+                        </td>
+                        <td class="m-none"
+                            :class="{'text-green' : w.type ==='freeze' , 'text-blue' : w.type !== 'freeze'}">
+                            [w.type =='freeze' ? 'Posting of a stake' :
+                            'Return of a deposit']
+                        </td>
+                        <td>[w.date]</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" data-modal="level">
+    <div class="modal__container modal-stat" style="max-width: 857px">
+        <button class="close"><img src="static/img/svg/main/close.svg" alt=""></button>
+        <div class="modal-content">
+            <div class="container">
+                <h3 style="margin-top: 40px;">CURRENT CHARGE TOKEN MINING RATES</h3>
+
+                <div class="stat-progress">
+                    <div class="stat-progress__header">
+                        <h4>level: [currentLvl] <span>/ 15</span></h4>
+                        <h5>tokens left at the current level</h5>
+                        <h6>[parseFloat(level.amount - period_mined).Crop(2)] CHG / <span>[level.amount] CHG</span></h6>
+                    </div>
+                    <div class="stat-progress__footer">
+                        <div>
+                            <div :style="{'width' : procentToken+'%'}"></div>
+                        </div>
+                        <h4>charge token value: <b>~ [price_token_trx] TRX</b></h4>
+                    </div>
+                </div>
+
+                <table class="d-none">
+                    <thead>
+                    <tr>
+                        <td>level</td>
+                        <td>EARNINGS IN 24 HOURS</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(l , k) in listlevel">
+                        <td><b>[k+1]</b>/ [l.amount] CHG</td>
+                        <td>
+                            <span>1 CSE = <b>[parseFloat(l.cse).toFixed(6).Crop(6)] CHG</b></span>
+                            <span>1 trx = <b>[parseFloat(l.trx).toFixed(6).Crop(6)]  CHG</b></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="m-none stat-table">
+                    <thead>
+                    <tr>
+                        <td>level</td>
+                        <td colspan="3">EARNINGS IN 24 HOURS</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(l , k) in listlevel">
+                        <td><b>[k+1]</b>/ [l.amount] CHG</td>
+                        <td>1 trx = <b>[parseFloat(l.trx).toFixed(6).Crop(6)] CHG</b></td>
+                        <td>1 cse ~ <b>[parseFloat(l.cse).toFixed(6).Crop(6)] CHG</b></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h3 style="margin-top: 30px;">HOW TO USE CHARGE TOKENS</h3>
+                <p>You can withdraw the received CHG tokens to your wallet at any time./p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal stk" data-modal="stake">
+    <div class="modal__container modal-stake" :class="'modal-stake--'+select_token" style="max-width: 558px">
+        <button class="close">
+            <img src="static/img/svg/main/close.svg" alt="">
+        </button>
+        <div class="modal-content">
+            <div class="container">
+                <div class="modal-stake__header">
+                    <img :src="'/static/img/svg/'+select_token+'.svg'" alt="">
+                    <div class="modal-stake-balance">
+                        <h3>Your wallet balance</h3>
+                        <h2>[active_balance] <span>[select_token]</span></h2>
+                    </div>
+                </div>
+                <div class="modal-stake__content">
+                    <div class="min">
+                        <label for="">Enter the stake amount </label>
+                        <span :class="'text-'+color[select_token]">min: <b>[get_min] [select_token]</b></span>
+                    </div>
+                    <div class="input">
+                        <input type="number" step="1" v-model="amount"> <span
+                            :class="'text-'+color[select_token]">[select_token]</span>
+                        <button :class="'text-'+color[select_token]" @click.prevent="get_max">max</button>
+                    </div>
+                    <table>
+                        <caption>profitability</caption>
+                        <tbody>
+                        <tr>
+                            <td>Per hour</td>
+                            <td>
+                                [ph.Crop(4)] CHG
+                                <span :class="'text-'+color[select_token]">~ [parseFloat(ph * price_token).Crop(4)] USD</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Per day</td>
+                            <td>
+                                [parseFloat(ph *24).Crop(4)] CHG
+                                <span :class="'text-'+color[select_token]">~ [parseFloat(ph * price_token * 24).Crop(4)] USD</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Per 10 days</td>
+                            <td>
+                                [parseFloat(ph * 24 * 10).Crop(4)] CHG
+                                <span :class="'text-'+color[select_token]">~ [parseFloat(ph * price_token * 24 * 10).Crop(4)] USD</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="pull-left" style="margin-right: 5px;">
+                    <button class="button " :class="color[select_token]" v-if="select_token === 'trx'"
+                            @click.prevent="stake_action">
+                        stake [select_token]
+                        <img src="static/img/svg/arrow.svg" alt="">
+                    </button>
+                    <button class="button " :class="color[select_token]"
+                            v-else-if="select_token !== 'trx' && allowance[select_token] >0 "
+                            @click.prevent="stake_action">
+                        stake [select_token]
+                        <img src="static/img/svg/arrow.svg" alt="">
+                    </button>
+                    <button class="button " :class="color[select_token]" @click="approve_send" v-else>
+                        approve [select_token]
+                        <img src="static/img/svg/arrow.svg" alt="">
+                    </button>
+                </div>
+                <div class="modal-stake__footer" v-if="hh.length > 0">
+                    <h2>Financial statistics</h2>
+                    <table>
+                        <tr v-for="s in hh ">
+                            <td>[parseFloat(s.amount/1000000).Crop(4)] [select_token]</td>
+                            <td>[s.types]</td>
+                            <td>[s.date]</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script src="static/js/main%EF%B9%96v=2.js"></script>
+<script src="./index.js"></script>
+<script>
+    Number.prototype.Crop = function (x) {
+        var s = this + '',
+            a = s.split('.');
+        a[1] = a[1] || '';
+        return parseFloat(a[0] + '.' + a[1].substring(0, x));
+    };
+
+
+    String.prototype.Crop = function (x) {
+        var s = this + '',
+            a = s.split('.');
+        a[1] = a[1] || '';
+        return parseFloat(a[0] + '.' + a[1].substring(0, x));
+    };
+
+
+    TRONGRID_API2 = "https://api.trongrid.io";
+    let VueTRON = {
+        data() {
+            return {
+                tronWeb: {
+                    loggedIn: false
+                },
+                withdraw: [],
+                referral: [],
+                statistics: [],
+
+                user: false,
+                listlevel: [
+                    {amount: 5000000, 'trx': 0.002, 'cse': 0.002*4.5},
+                    {amount: 5000000, 'trx': 0.0018, 'cse': 0.0018*4.5},
+                    {amount: 5000000, 'trx': 0.0016, 'cse': 0.0016*4.5},
+                    {amount: 4000000, 'trx': 0.0014, 'cse': 0.0014*4.5},
+                    {amount: 4000000, 'trx': 0.0013, 'cse': 0.0013*4.5},
+                    {amount: 4000000, 'trx': 0.0012, 'cse': 0.0012*4.5},
+                    {amount: 3500000, 'trx': 0.0011, 'cse': 0.0011*4.5},
+                    {amount: 3000000, 'trx': 0.001, 'cse': 0.001*4.5},
+                    {amount: 3000000, 'trx': 0.0009, 'cse': 0.0009*4.5},
+                    {amount: 2500000, 'trx': 0.0008, 'cse': 0.0008*4.5},
+                    {amount: 2500000, 'trx': 0.0007, 'cse': 0.0007*4.5},
+                    {amount: 2500000, 'trx': 0.0006, 'cse': 0.0006*4.5},
+                    {amount: 2000000, 'trx': 0.0005, 'cse': 0.0005*4.5},
+                    {amount: 2000000, 'trx': 0.0004, 'cse': 0.0004*4.5},
+                    {amount: 2000000, 'trx': 0.0003, 'cse': 0.0003*4.5},
+                ],
+
+                balance: {
+                    'cse': 0,
+                },
+                balance_cse: 0,
+                count_ref: 0,
+                amountNextLevel: 0,
+                totalMined: 0,
+                select_token: 'cse',
+                color: {
+                    'cse': 'blue',
+                }
+            };
+        },
+        computed: {
+            user_login: function () {
+                return String(this.user).substring(0, 4) + '.....' + String(this.user).substring(this.user.length - 4, this.user.length)
+            },
+
+
+        },
+        async created() {
+            await new Promise(resolve => {
+                const tronWebState = {
+                    installed: !!window.tronWeb,
+                    loggedIn: window.tronWeb && window.tronWeb.ready
+                };
+
+                if (tronWebState.installed) {
+                    this.tronWeb = tronWebState;
+                    return resolve();
+                }
+
+                let tries = 0;
+
+                const timer = setInterval(() => {
+                    if (tries >= 10) {
+                        const TRONGRID_API = TRONGRID_API2;
+
+                        window.tronWeb = new TronWeb(
+                            TRONGRID_API,
+                            TRONGRID_API,
+                            TRONGRID_API
+                        );
+
+
+                        this.tronWeb = {
+                            installed: false,
+                            loggedIn: false
+                        }
+
+
+                        clearInterval(timer);
+                        return resolve();
+                    }
+
+                    tronWebState.installed = !!window.tronWeb;
+                    tronWebState.loggedIn = window.tronWeb && window.tronWeb.ready;
+
+                    if (!tronWebState.installed)
+                        return tries++;
+
+                    this.tronWeb = tronWebState;
+
+                    resolve();
+                }, 1000);
+            });
+
+            if (!this.tronWeb.loggedIn) {
+
+                window.tronWeb.on('addressChanged', async () => {
+                    if (this.tronWeb.loggedIn)
+                        return;
+                    this.tronWeb = {
+                        installed: true,
+                        loggedIn: true
+                    }
+                });
+            }
+
+        },
+        methods: {
+            get_balance: async function () {
+                try {
+                    var s = JSON.stringify({address: await window.tronWeb.defaultAddress.hex});
+                    return $.ajax({
+                        type: 'post',
+                        dataType: 'json',
+                        url: TRONGRID_API2 + "/wallet/getaccount",
+                        contentType: 'application/json',
+                        data: s,
+                        success: (data) => {
+                            this.balance.trx = (data.balance / 1000000).Crop(2);
+
+                        }
+                    })
+                } catch (e) {
+                    console.log(e)
+                }
+
+                // this.balance = this.crop(await window.tronWeb.trx.getBalance() / 1000000)
+            },
+            getTronWeb() {
+                return new Promise((resolve, reject) => {
+                    window.tronWeb ? resolve(window.tronWeb) : reject('TronWeb not found');
+                });
+            }
+        }, watch: {
+
+            async 'tronWeb.loggedIn'() {
+                clearTimeout(this.timeout)
+                this.timeout = setTimeout(async () => {
+                    this.user = window.tronWeb.defaultAddress.base58;
+                }, 300)
+
+            }
+
+        }
+    };
+</script>
+
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"/>
+
+    <style>.simplebar-scrollbar {
+            opacity: 0 !important;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+   <script>
+
+
+        $('body').on('click', '.select', function () {
+            $(this).toggleClass('active');
+        });
+
+        $('body').on('click', '[data-toggle]', function () {
+
+            $('.modal.active').removeClass('active');
+            $(`[data-modal="${$(this).data('toggle')}"]`).addClass('active');
+            $('body').addClass('open-modal');
+            $('.modal').on('click', function (e) {
+                if (!$(e.target).closest('.modal__container').length) {
+                    closeModal();
+                    $('.modal__container').unbind();
+                }
+            })
+
+            App.getHistory($(this).data('toggle'));
+
+            return false
+        })
+
+        function openModal(name) {
+            $(`[data-modal]`).removeClass('active');
+            $(`[data-modal="${name}"]`).addClass('active');
+            $('body').addClass('open-modal');
+            $('.modal').on('click', function (e) {
+                if (!$(e.target).closest('.modal__container').length) {
+                    closeModal();
+                    $('.modal__container').unbind();
+                }
+            })
+
+            App.getHistory($(this).data('toggle'));
+
+            return false
+        }
+
+        $('body').on('click', '.modal .close', function () {
+            closeModal();
+        });
+
+
+        function closeModal() {
+            $('body').removeClass('open-modal');
+            $(`[data-modal]`).removeClass('active');
+            return false
+        }
+
+        window.App = new Vue({
+            mixins: [VueTRON],
+            el: '.app',
+            delimiters: ['[', ']'],
+            data() {
+                return {
+                    wallet: '++++CONTRACTADDRESS++++',
+                    active: false,
+                    avaiable: 0,
+                    
+                    
+                    referral_money: 0,
+                    total_referral: 0,
+                    amount: 100,
+                    cse: false,
+                    tth: false,
+                    CHG: false,
+                    upline: [],
+                    period_mined: 0,
+                    total_staked: {
+                        'cse': 0,
+                        'trx': 0,
+                    },
+                    history_freeze: {
+                        'cse': [],
+                        'trx': [],
+                    },
+                    user_stake: {
+                        trx: 0,
+                        cse: 0,
+                    },
+                    token_wallet: {
+                        'cse': 'TVu2keBLZrbmx9QTXHuzQwhPF242fsheN2',
+
+
+                    },
+                    min: {
+                        'cse': 100,
+                        'trx': 100,
+                    },
+                    max: {
+                        'cse': 1000000,
+                        'trx': 5000000,
+                    },
+                    allowance: {
+                        'cse': false,
+                        'CHG': false,
+                    },
+                    level: {
+                        amount: 0,
+                        speed_cse: 0,
+                    },
+                    currentLvl: 1,
+                    curses: {
+                        'trx': 0,
+                        'trx_price': 0,
+                        'cse': 0,
+                        'cse_amount': 0,
+                    }
+
+                }
+            },
+            computed: {
+                price_token: function () {
+                    return parseFloat(this.price_token_trx * this.curses.trx_price).Crop(4)
+                },
+                price_token_trx: function () {
+                    return parseFloat(this.curses.trx / this.curses.cse_amount).Crop(4);
+                },
+                get_min: function () {
+                    return this.min[this.select_token];
+                },
+                hh: function () {
+                    return this.history_freeze[this.select_token];
+                },
+                active_balance: function () {
+                    return this.balance[this.select_token];
+                },
+                ref_link: function () {
+                    if (this.user) {
+                        return 'https://charge.csetron.github.io/?referral=' + this.user
+                    }
+                    return '';
+                },
+
+                procentToken: function () {
+                    if (!this.user) {
+                        return 0;
+                    }
+                    return this.period_mined / this.level.amount * 100
+
+                },
+                left: function () {
+                    return this.level.amount - this.period_mined
+                },
+                per_hour: function () {
+                    var time = 3600;
+                    var send_amount;
+                    send_amount += time * this.user_stake.cse * this.level.speed_cse;
+                    send_amount = send_amount / 1000000 / 86400;
+                    return send_amount;
+                },
+                per_hour_price: function () {
+                    return this.per_hour * this.price_token;
+                },
+                ph: function () {
+                    var time = 3600;
+                    var send_amount;
+                    send_amount = time * this.amount * this.level['speed_' + this.select_token];
+                    send_amount = send_amount / 1000000 / 86400;
+                    return send_amount;
+                },
+
+            },
+            methods: {
+                getTokenAmount() {
+                    var _this = this;
+                    const data = JSON.stringify({
+                        "owner_address": "417e5f4552091a69125d5dfcb7b8c2659029395bdf",
+                        "contract_address": "41738c6e7edd4672c7f6e7158add1dfb9fdea5c93e",
+                        "function_selector": "balanceOf(address)",
+                        "call_value": 0,
+                        "parameter": "000000000000000000000000f3ee8aa95bcdcaef2dfb519efc72c1ecfd81b402"
+                    });
+
+                    const xhr = new XMLHttpRequest();
+
+                    xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === this.DONE) {
+                            let t = '0x' + JSON.parse(this.responseText).constant_result[0];
+                            _this.curses.cse_amount = Number(t) / 1000000;
+                        }
+                    });
+
+                    xhr.open("POST", "https://api.trongrid.io/wallet/triggersmartcontract");
+                    xhr.setRequestHeader("content-type", "application/json");
+                    xhr.send(data);
+                },
+
+                get_Trx_Amount() {
+                    var _this = this;
+                    $.ajax({
+                        type: "post",
+                        data: "{address : '41f3ee8aa95bcdcaef2dfb519efc72c1ecfd81b402'}",
+                        dataType: 'json',
+                        contentType: "application/json",
+                        url: 'https://api.trongrid.io/walletsolidity/getaccount',
+                        success: function (data) {
+                            _this.curses.trx = parseFloat(data.balance / 1000000);
+                        }
+                    })
+                },
+                getTrxPrice: function () {
+                    $.get('https://api.just.network/swap/scan/statusinfo?exchangeAddress=TLNiWgSAL9RjHXhDXP3XFRrabZJx6KG7fm', (d) => {
+                        this.curses.trx_price = d.data.trxPrice;
+                    })
+                },
+                get_max: function () {
+                    if (this.max[this.select_token] < this.active_balance) {
+                        this.amount = this.max[this.select_token];
+                    } else {
+                        this.amount = this.active_balance;
+                    }
+                },
+                getHistory: function (t) {
+                    var _this = this;
+                    $.get(t + '/?user=' + this.user + '&stake=' + this.token_wallet[this.select_token], function (d) {
+                        if (t === 'stake') {
+                            _this.history_freeze[_this.select_token] = d;
+                        }
+                        _this[t] = d
+                    });
+                },
+                copy() {
+                    var copyText = document.getElementById("ref");
+                    copyText.select();
+                    copyText.setSelectionRange(0, 99999)
+                    document.execCommand("copy");
+                    alert("Copied");
+                },
+                stake_action: function () {
+
+                    if (this.select_token === 'trx') {
+                        this.app.stake(this.upline).send({
+                            feeLimit: 5000000,
+                            callValue: parseFloat(this.amount * 1000000).toFixed(0)
+                        }).then((d) => {
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1000)
+                        });
+                    } else {
+                        this.app.stakeToken(this.token_wallet[this.select_token], this.upline, parseFloat(this.amount * 1000000).toFixed(0)).send({feeLimit: 5000000}).then(() => {
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1000)
+                        });
+                    }
+                },
+                approve_send: async function () {
+                    this[this.select_token].approve(this.wallet, 1000000000000000).send().then((d) => {
+                        this.check_approve(this.select_token);
+                        setTimeout(() => {
+                            location.reload()
+                        }, 1000)
+                    })
+                },
+                check_approve: function (name) {
+                    this[name].allowance(this.user, this.wallet).call().then((d) => {
+                        this.allowance[name] = parseFloat(d);
+                    }).catch((e) => {
+                        this.check_approve(name);
+                    })
+                },
+                balanceCHG: function () {
+                    this.get_user_stake();
+                    this.app.get_money(this.user).call().then((d) => {
+                        this.avaiable = parseFloat(d) / 1000000;
+                    });
+                    this.app.get_money_referral(this.user).call().then((d) => {
+                        this.referral_money = (d / 1000000).Crop(6)
+                    })
+                    setTimeout(() => {
+                        this.balanceCHG();
+                    }, 5000)
+                },
+                get_user_stake: function () {
+                    this.app.user_stake(this.user).call().then((d) => {
+                        this.user_stake = {
+                            cse: parseFloat(parseFloat(d.cse_amount) / 1000000).Crop(2),
+                            trx: parseFloat(parseFloat(d.trx_amount) / 1000000).Crop(2),
+                            tth: parseFloat(parseFloat(d.tth_amount) / 1000000).Crop(2),
+                            date: parseFloat(d.date),
+                        }
+
+                    })
+                },
+
+                getMyToken: function () {
+                    this.app.getToken().send({feeLimit: 5000000}).then(() => {
+                        setTimeout(() => {
+                            location.reload()
+                        }, 1000)
+                    });
+                },
+                getReferralMoney: function () {
+                    this.app.getReferralMoney().send({feeLimit: 5000000}).then(() => {
+                        setTimeout(() => {
+                            location.reload()
+                        }, 1000)
+                    });
+                },
+                get_statistics(token) {
+                    this.app.statistics(this.token_wallet[token]).call().then((d) => {
+                        this.total_staked[token] = parseFloat(parseFloat(d.freeze) / 1000000).Crop(4);
+                    })
+                },
+                unfreeze: function (token) {
+                    if (token.length > 0) {
+                        this.app.unfreezeToken(this.token_wallet[token]).send({feeLimit: 10000000}).then(() => {
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1000)
+                        });
+                    } else {
+                        this.app.unfreeze().send({feeLimit: 5000000}).then(() => {
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1000)
+                        });
+                    }
+                },
+                get_currentLvl: function () {
+                    this.app.currentLvl().call().then((d) => {
+                        this.currentLvl = d
+                    })
+                },
+                register() {
+                    if (this.user && this.user !== '') {
+                        fetch('register', {
+                            method: "POST",
+                            headers: {
+                                "X-Requested-With": "XMLHttpRequest"
+                            },
+                            body: JSON.stringify({user: this.user})
+                        })
+                            .then((response) => {
+                                return response.json();
+                            })
+                            .then((data) => {
+                                this.active = true;
+                                if (data.result === 'success') {
+                                    this.upline = data.data;
+                                    this.total_referral = data.count;
+                                }
+                            });
+                    }
+                },
+                getBalanceToken() {
+
+                    this[this.select_token].balanceOf(this.user).call().then((d) => {
+                        this.balance[this.select_token] = parseFloat(d) / 1000000;
+                    }).catch((e) => {
+                        this.getBalanceToken();
+                    })
+                },
+                get_all_info: function () {
+                    this.app.get_all_info(this.token_wallet.cse, this.token_wallet.tth, this.token_wallet.trx).call().then((d) => {
+                        this.total_staked.cse = parseFloat(d[0] / 1000000).Crop(2);
+                        this.total_staked.tth = parseFloat(d[1] / 1000000).Crop(2);
+                        this.total_staked.trx = parseFloat(d[2] / 1000000).Crop(2);
+                        this.period_mined = parseFloat(d[3] / 1000000).Crop(2);
+                        this.currentLvl = d[4];
+                        this.level = {
+                            amount: parseFloat(d[5] / 1000000).Crop(2),
+                            speed_trx: parseFloat(d[8]).Crop(2),
+                            speed_cse: parseFloat(d[6]).Crop(2),
+                            speed_tth: parseFloat(d[7]).Crop(2),
+                        };
+                        console.log(this.level)
+                    }).catch((e) => {
+                        setTimeout(() => {
+                            this.get_all_info();
+                        }, 2000)
+                    });
+                }
+            },
+            watch: {
+                amount: function () {
+
+                        this.amount =  parseInt(this.amount);
+
+
+                },
+                'select_token': function () {
+                    if (this.select_token === 'trx') {
+                        this.get_balance();
+                    } else {
+                        this.getBalanceToken();
+                    }
+                },
+                async 'tronWeb.loggedIn'() {
+                    clearTimeout(this.timeout)
+                    this.timeout = setTimeout(async () => {
+                        this.user = window.tronWeb.defaultAddress.base58;
+                        this.app = await window.tronWeb.contract().at(this.wallet);
+                        this.register();
+
+                        this.cse = await window.tronWeb.contract().at(this.token_wallet.cse);
+                        this.tth = await window.tronWeb.contract().at(this.token_wallet.tth);
+                        this.balanceCHG();
+                        this.get_balance();
+                        this.get_user_stake();
+
+                        this.check_approve('cse');
+                        this.check_approve('tth');
+
+                        this.get_all_info();
+                        this.getBalanceToken();
+
+                    }, 300)
+                },
+            },
+            async mounted() {
+                this.getTokenAmount();
+                this.get_Trx_Amount();
+                this.getTrxPrice();
+                $('.modal-content').each((i, e) => {
+                    console.log(e)
+                    new SimpleBar($(e)[0]);
+                })
+            }
+        })
+    </script>
+
+</body>
+<footer class="centerImage"></br>
+    <div class="text-black">
+© 2020. Community Staking Experiment. All rights reserved.</div>
+        <menu>
+            <div>
+                <a href="https://t.me/csetron" target="_blank"><img src="static/img/png/tgram.png" alt="" class="centerImage"></a>
+                <a href="https://twitter.com/CseTron" target="_blank"><img src="static/img/png/twblack.png" alt="" class="centerImage"></a>
+            </div>
+        </menu>
+    </br>
+    </footer>
+</html>
