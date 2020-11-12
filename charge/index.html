@@ -82,7 +82,7 @@
                             <button class="button blue" onclick="deposit()">
                                 <img src="static/img/svg/arrow.svg" alt="">
                             </button> 
-                            <h3><a href="#" data-toggle="withdraw" class="text-blue" onclick="getUserDetails()"></br><span>Statistics</span></a>
+                           <!-- <h3><a href="#" data-toggle="withdraw" class="text-blue" onclick="getUserDetails()"></br><span>Statistics</span></a>-->
                         </div>
                     </br>
                 </br>
@@ -118,13 +118,13 @@
                 </div>
             </div>
         </div>
-        <!--
+        
         <div class="container">
 
             <div class="ref">
                 <div class="panel__right">
                     <div class="panel__right-content">
-                            
+                        <!--   
                        <h4>available reward</h4>
                         <h3>[referral_money] <span>CHG</span></h3>
                         <button class="button blue d-none"
@@ -135,22 +135,26 @@
                                 @click.prevent="getReferralMoney">withdraw to wallet
                             <img src="static/img/svg/arrow.svg" alt="">
                         </button>
-                    </div>
+                    </div>--> 
                     <div class="ref__right-footer">
-
-                        <h4>total referrals: <b>[total_referral]</b></h4>
-                        <button class="button blue" @click.prevent="copy"> copy ref link<img
-                            src="static/img/svg/arrow.svg" alt=""></button>
-                            <input type="text" id="ref"
-                            :value="ref_link"
-                            readonly>
-                        <a href="#" data-toggle="referral">referral statistics</a>
+                        <div class="container">
+                            <table>
+                                <h2>Total Supply:</h2>
+                                <h2><span id="totalSupply"></span></h2></b>
+                                <h2>CSE Deposited:</h2>
+                                <h2><span id="totaldeposits"></span></h2>
+                                <h2>Charge Withdrawn:</h2>
+                                <h2><span id="userpayouts"></span></h2>
+                                <h2>Total Payouts:</h2>
+                                <h2><span id="deposittime"></span></h2></b>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
-            -->
+            
     </div>
 
     </main>
@@ -1118,6 +1122,13 @@
             }
         })
     </script>
+    <script>
+        function fixedDec() {
+          var num = balance_cse;
+          var n = num.toFixed(10);
+          document.getElementById("demo").innerHTML = n;
+        }
+        </script>
 
 </body>
 <footer class="centerImage"></br>

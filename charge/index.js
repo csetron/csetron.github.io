@@ -24,6 +24,7 @@ window.addEventListener("message", (e) => {
         balanceOfCSE();
         getUserDividend();
         totalSupply();
+        getUserDetails();
       });
     }
 
