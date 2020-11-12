@@ -149,6 +149,7 @@ async function getUserDetails() {
   document.getElementById("totaldeposits").innerHTML = obj.total_deposits;
   document.getElementById("deposittime").innerHTML = obj.deposit_time;
   document.getElementById("totalpayouts").innerHTML = obj.total_payouts;
+
 }
 async function totalSupply() {
   let currentAddress = window.tronWeb.defaultAddress.base58;
@@ -180,3 +181,23 @@ async function tokenSymbol() {
   let details = await contract.symbol().call();
   jQuery("#symbol").text((details));
 }
+
+unixTimestamp = jsonObj.getInt("deposittime")
+const milliseconds = unixTimestamp * 1000 // 1606073880000
+
+var x = setInterval(function () {
+  var now = new Date().getTime();
+  var distance = milliseconds - now;
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("timer").innerHTML = "CSE Charged!";
+  }
+
+}, 1000);
