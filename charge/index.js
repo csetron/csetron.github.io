@@ -158,7 +158,7 @@ async function getUserDetails() {
         payouts: parseInt(details.payouts) / 100000000,
         deposit_amount: parseInt(details.deposit_amount) / 100000000,
         deposit_payouts: parseInt(details.deposit_payouts) / 100000000,
-        deposit_time: parseInt(details.deposit_time),
+        deposit_time: parseInt(details.deposit_time) + 1296000,
         total_deposits: parseInt(details.total_deposits) / 100000000,
         total_payouts: parseInt(details.total_payouts) / 100000000,
     };
@@ -168,7 +168,7 @@ async function getUserDetails() {
     document.getElementById("userpayouts").innerHTML = obj.payouts;
     document.getElementById("depositamount").innerHTML = obj.deposit_amount;
     document.getElementById("totaldeposits").innerHTML = obj.total_deposits;
-    document.getElementById("deposittime").innerHTML = obj.deposit_time;
+    document.getElementById("deposittime").value = obj.deposit_time;
     document.getElementById("totalpayouts").innerHTML = obj.total_payouts;
 }
 
@@ -208,9 +208,11 @@ async function tokenSymbol() {
     let details = await contract.symbol().call();
     jQuery("#symbol").text((details));
 }
+setTimeout(getStaketimer,8000);
 
-var a = results
-const milliseconds = a * 1000 // 1606073880000
+function getStaketimer() {
+const stakeTimeEnd = document.getElementById("deposittime").value;
+const milliseconds = stakeTimeEnd * 1000 // 1606073880000
 
 var x = setInterval(function () {
   var now = new Date().getTime();
@@ -228,12 +230,4 @@ var x = setInterval(function () {
   }
 
 }, 1000);
-
-function intConvert()
-{
-var mod = 100;
-var results = document.getElementById("deposittime").value;
-results += mod;
-
-document.getElementById("unixTime").innerHTML = results;
 }
