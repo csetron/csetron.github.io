@@ -79,7 +79,9 @@
                                 class="number" placeholder="Enter Stake Amount" id="depositamount">  
                             <button class="button blue" onclick="deposit()">
                                 <img src="static/img/svg/arrow.svg" alt="">
-                            </button> 
+                            </button></br></br></br>
+                            <h5>PLEASE NOTE - SEE BELOW IN THE STATS AREA.</h5>
+                            <h5>IF ANY AMOUNT IS DISPLAYED IN THE CSE DEPOSITED FIELD, YOU HAVE REACHED THE MAXIMUM STAKE FOR THIS WALLET'S 15DAY PERIOD AND CANNOT STAKE AGAIN.</h5>
                            <!-- <h3><a href="#" data-toggle="withdraw" class="text-blue" onclick="getUserDetails()"></br><span>Statistics</span></a>-->
                         </div>
                     </br>
@@ -137,16 +139,18 @@
                     </div>--> 
                     <div class="ref__right-footer">
                         <div class="container">
-                            <h5>Please Note - If you see any amount in the cse deposited field you have reached your maximum stake for this wallet's 15day period.</h5></br>
+                            
                             <table>
                                 <h2>Total Supply:</h2>
-                                <h2><span id="totalSupply"></span></h2></b>
+                                <h2><span id="totalSupply"></span></h2></br>
                                 <h2>CSE Deposited:</h2>
-                                <h2><span id="totaldeposits"></span></h2>
+                                <h2><span id="totaldeposits"></span></h2></br>
+                                <h2>Projected Charge Earnings:<h2>
+                                <span id="maxtopay"></span><h2></br>
                                 <h2>Charge Withdrawn:</h2>
                                 <h2><span id="userpayouts"></span></h2>
-                               <!-- <h2>Total Payouts:</h2>
-                                <h2><span id="deposittime"></span></h2></b>-->
+                                <!--<h2>Total Payouts:</h2>
+                                <h2><span id="totalpayouts"></span></h2></br>-->
                             </table>
                         </div>
                     </div>

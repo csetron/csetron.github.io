@@ -139,6 +139,7 @@ async function getUserDividend() {
     console.log("MY OBJ : ", obj);
     jQuery("#getUserDividend").text(JSON.stringify(obj));
     document.getElementById("dividend").innerHTML = obj.dividend;
+    document.getElementById("maxtopay").innerHTML = obj.MaxToPay;
 }
 
 //get user detail
@@ -168,7 +169,7 @@ async function getUserDetails() {
     document.getElementById("depositamount").innerHTML = obj.deposit_amount;
     document.getElementById("totaldeposits").innerHTML = obj.total_deposits;
     document.getElementById("deposittime").innerHTML = obj.deposit_time;
-    //document.getElementById("totalpayouts").innerHTML = obj.total_payouts;
+    document.getElementById("totalpayouts").innerHTML = obj.total_payouts;
 }
 
 async function totalSupply() {
