@@ -516,7 +516,7 @@
                     staticClass: "social-links gray"
                 }, [n("li", [n("a", {
                     attrs: {
-                        href: "https://t.me/csetron",
+                        href: "https://t.me/communitystakingexperiment",
                         target: "_blank"
                     }
                 }, [n("i", {
@@ -999,7 +999,7 @@
                     }
                 }, [n("a", {
                     attrs: {
-                        href: "https://t.me/csetron",
+                        href: "https://t.me/communitystakingexperiment",
                         target: "_blank"
                     }
                 }, [n("i", {
